@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024"><svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1_3040)">
+<rect width="1024" height="1024" fill="white"></rect>
+<g clip-path="url(#clip1_1_3040)">
+<rect width="1024" height="1024" fill="#F8F9FA"></rect>
+<path d="M0 703H1024" stroke="#007AFF"></path>
+<path d="M0 512H1024" stroke="#007AFF"></path>
+<path d="M0 321H1024" stroke="#007AFF"></path>
+<path d="M703 1024V0" stroke="#007AFF"></path>
+<path d="M512 1024V0" stroke="#007AFF"></path>
+<path d="M321 1024V0" stroke="#007AFF"></path>
+<path d="M1024 1024L0 0" stroke="#007AFF"></path>
+<path d="M0 1024L1024 0" stroke="#007AFF"></path>
+<rect x="67" y="67" width="890" height="890" stroke="#007AFF"></rect>
+<circle cx="512" cy="512" r="191" stroke="#007AFF"></circle>
+<circle cx="512" cy="512" r="269" stroke="#007AFF"></circle>
+<circle cx="512" cy="512" r="445" stroke="#007AFF"></circle>
+<rect width="1024" height="1024" fill="white"></rect>
+<rect x="350.675" y="204" width="511.325" height="179.955" rx="89.9773" fill="#C34A04"></rect>
+<rect x="162" y="422.007" width="700" height="179.955" rx="89.9773" fill="#C34A04"></rect>
+<rect x="162" y="640.014" width="700" height="179.955" rx="89.9773" fill="#C34A04"></rect>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_1_3040">
+<rect width="1024" height="1024" fill="white"></rect>
+</clipPath>
+<clipPath id="clip1_1_3040">
+<rect width="1024" height="1024" fill="white"></rect>
+</clipPath>
+</defs>
+</svg></svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: none; } }
+</style></svg>
