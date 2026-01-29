@@ -3,6 +3,7 @@ import { Stack } from "expo-router";
 import React, { useMemo, useState } from "react";
 import {
   ActivityIndicator,
+  Alert,
   FlatList,
   ScrollView,
   Text,
@@ -17,9 +18,11 @@ import { useTopics } from "../../hooks/useDashboardData";
 import {
   useQuestions,
   useStudyLists,
-  useTrackQuestion,
   useTrackedQuestions,
+  useTrackQuestion,
+  useTrackStudyList,
 } from "../../hooks/useLibraryData";
+import { useToastStore } from "../../stores/toastStore";
 // useDebounceValue inline
 const useDebounceValue = (value: string, delay: number) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -52,6 +55,8 @@ export default function LibraryScreen() {
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useQuestions(debouncedSearch, selectedTopic, selectedStudyList);
   const trackQuestion = useTrackQuestion();
+  const toast = useToastStore();
+  const trackStudyList = useTrackStudyList();
 
   const questions = useMemo(() => {
     return data?.pages.flatMap((page) => page.questions) || [];
@@ -59,11 +64,44 @@ export default function LibraryScreen() {
 
   const handleTrack = async (questionId: string) => {
     if (!user) {
-      // Show auth alert or navigate to login
-      alert("Please login first");
+      toast.show("Please login first", "error");
       return;
     }
     trackQuestion.mutate({ userId: user.id, questionId });
+  };
+
+  const handleTrackAll = () => {
+    if (!user || !selectedStudyList) return;
+
+    Alert.alert(
+      "Track All Questions",
+      "Are you sure you want to add ALL questions from this list to your schedule?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Yes, Track All",
+          onPress: () => {
+            trackStudyList.mutate(
+              { userId: user.id, studyListId: selectedStudyList },
+              {
+                onSuccess: () => {
+                  toast.show(
+                    "All questions from the list have been added to your schedule!",
+                    "success",
+                  );
+                },
+                onError: (error) => {
+                  toast.show("Failed to track list: " + error.message, "error");
+                },
+              },
+            );
+          },
+        },
+      ],
+    );
   };
 
   const renderHeader = () => (
@@ -140,6 +178,28 @@ export default function LibraryScreen() {
               </TouchableOpacity>
             ))}
           </ScrollView>
+        )}
+
+        {/* Track All Button - Only show if a specific study list is selected */}
+        {selectedStudyList && (
+          <View className="mb-3 px-1">
+            <TouchableOpacity
+              onPress={handleTrackAll}
+              disabled={trackStudyList.isPending}
+              className="flex-row items-center justify-center bg-indigo-600 py-3 rounded-lg"
+            >
+              {trackStudyList.isPending ? (
+                <ActivityIndicator
+                  size="small"
+                  color="white"
+                  className="mr-2"
+                />
+              ) : null}
+              <Text className="text-white font-bold text-center">
+                Track All Questions in List
+              </Text>
+            </TouchableOpacity>
+          </View>
         )}
 
         {/* Topics */}

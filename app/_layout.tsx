@@ -13,6 +13,7 @@ import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import { AuthProvider } from "../components/AuthProvider";
+import { Toast } from "../components/Toast";
 import { useProtectedRoute } from "../hooks/useProtectedRoute";
 
 export const unstable_settings = {
@@ -26,6 +27,7 @@ export default function RootLayout() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <RootLayoutNav />
+        <Toast />
       </AuthProvider>
     </QueryClientProvider>
   );
